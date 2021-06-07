@@ -12,7 +12,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { InputScreen, InputScreenOptions } from '../screens/InputScreen';
 import Colors from '../constants/Colors';
 import { TasksScreen, TasksScreenOptions } from '../screens/TasksScreen';
-import { ImagesScreen, ImagesScreenOptions } from '../screens/ImagesScreen';
+import {
+     TaskTemplateScreen,
+     TaskTemplateScreenOptions,
+} from '../screens/TaskTemplateScreen';
 
 const defaultNavOptions = {
      headerStyle: {
@@ -32,9 +35,9 @@ export const TasksNavigator = () => {
                     options={TasksScreenOptions}
                />
                <TasksStackNavigator.Screen
-                    name='Images'
-                    component={ImagesScreen}
-                    options={ImagesScreenOptions}
+                    name='CurrentTask'
+                    component={TaskTemplateScreen}
+                    options={TaskTemplateScreenOptions}
                />
           </TasksStackNavigator.Navigator>
      );
@@ -107,7 +110,7 @@ export const MainNavigator = () => {
                               />
                          ),
                     }}
-               />              
+               />
           </MainDrawerNavigator.Navigator>
      );
 };

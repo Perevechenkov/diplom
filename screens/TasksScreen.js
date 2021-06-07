@@ -23,9 +23,7 @@ export const TasksScreen = props => {
                     <TaskItem
                          title={'Диагностика'}
                          onSelect={() => {
-                              props.navigation.navigate('Images', {
-                                   taskTitle: 'Диагностика',
-                              });
+                              props.navigation.navigate('CurrentTask');
                          }}
                     />
                     <TaskItem title={'Пережитые травмы'} />
