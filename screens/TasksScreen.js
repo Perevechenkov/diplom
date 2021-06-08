@@ -15,21 +15,23 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { Card } from '../components/Card';
 import { TaskItem } from '../components/TaskItem';
 import { CustomHeaderButton } from '../components/CustomHeaderButton';
+import { TASKS } from '../data/dummy-data';
 
 export const TasksScreen = props => {
      return (
           <View style={styles.screen}>
                <ScrollView>
-                    <TaskItem
-                         title={'Диагностика'}
-                         onSelect={() => {
-                              props.navigation.navigate('CurrentTask');
-                         }}
-                    />
-                    <TaskItem title={'Пережитые травмы'} />
-                    <TaskItem title={'Гигиена сна'} />
-                    <TaskItem title={'Дыхательные техники'} />
-                    <TaskItem title={'Упражнения релаксации'} />
+                    {TASKS.map(task => (
+                         <TaskItem
+                              key={task.id}
+                              taskTitle={task.title}
+                              onSelect={() => {
+                                   props.navigation.navigate('CurrentTask', {
+                                        taskId: task.id,
+                                   });
+                              }}
+                         />
+                    ))}
                </ScrollView>
           </View>
      );

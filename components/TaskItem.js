@@ -19,7 +19,7 @@ export const TaskItem = props => {
           <Card style={styles.task}>
                <TouchableNativeFeedback onPress={props.onSelect}>
                     <View style={styles.touchable}>
-                         <Text style={styles.text}>{props.title}</Text>
+                         <Text style={styles.text}>{props.taskTitle}</Text>
                     </View>
                </TouchableNativeFeedback>
           </Card>

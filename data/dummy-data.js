@@ -1,4 +1,5 @@
 import Image from '../models/image';
+import Task from '../models/task';
 
 export const IMAGES = [
      new Image(
@@ -21,4 +22,17 @@ export const IMAGES = [
           'c5',
           'https://images.unsplash.com/photo-1611735547606-7b45fe8b137d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2ludGVyJTIwZm9yZXN0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80'
      ),
+];
+
+export const TASKS = [
+     new Task(
+          'diagnostic',
+          'Диагностика',
+          ['checkList', 'c1', 'c2'],
+          'checkList'
+     ),
+     new Task('checkList', 'Диагностика', null, 'hygiene'),
+     new Task('hygiene', 'Гигиена сна', null, null),
+     new Task('breathing', 'Дыхательные техники', null, null),
+     new Task('relaxing', 'Упражнения релаксации', null, null),
 ];

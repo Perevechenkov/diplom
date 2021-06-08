@@ -12,29 +12,35 @@ import {
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import { CustomHeaderButton } from '../components/CustomHeaderButton';
-import { IMAGES } from '../data/dummy-data';
+import { IMAGES, TASKS } from '../data/dummy-data';
 import { DiagnosticTask } from './tasks/DiagnosticTask';
 import { CheckListTask } from './tasks/CheckListTask';
+import { CheckHygieneTask } from './tasks/CheckHygieneTask';
 
 export const TaskTemplateScreen = props => {
-     const [currentTask, setCurrentTask] = useState('Diagnostic');
+     const id = props.route.params.taskId;
+     const [currentTask, setCurrentTask] = useState(id);
+     const taskObj = TASKS.find(task => currentTask === task.id);
+
      useEffect(() => {
           props.navigation.setOptions({
-               headerTitle: currentTask,
+               headerTitle: taskObj.title,
           });
-     });
+     }, [currentTask]);
 
      const content = id => {
           switch (id) {
-               case 'Diagnostic':
+               case 'diagnostic':
                     return <DiagnosticTask />;
-               case 'CheckList':
+               case 'checkList':
                     return <CheckListTask />;
+               case 'hygiene':
+                    return <CheckHygieneTask />;
           }
      };
 
      const buttonHandler = () => {
-          setCurrentTask('CheckList');
+          setCurrentTask(taskObj.nextTask);
      };
 
      return (
