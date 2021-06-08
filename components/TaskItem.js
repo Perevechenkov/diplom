@@ -10,8 +10,6 @@ import {
      Button,
      TouchableNativeFeedback,
 } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { Card } from '../components/Card';
 
 export const TaskItem = props => {
