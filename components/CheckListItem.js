@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 
 export const CheckListItem = props => {
      const [value, setValue] = useState(false);
+
+     useEffect(() => {
+          props.onCheckHandler(value);
+     }, [value]);
 
      return (
           <View style={styles.container}>
@@ -22,15 +26,14 @@ export const CheckListItem = props => {
 
 const styles = StyleSheet.create({
      container: {
-          
           padding: 5,
           marginVertical: 5,
           borderColor: '#ccc',
           borderRadius: 5,
           borderWidth: 1,
      },
-     content:{
+     content: {
           flexDirection: 'row',
           alignItems: 'center',
-     }
+     },
 });
