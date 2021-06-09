@@ -16,6 +16,7 @@ import {
      TaskTemplateScreen,
      TaskTemplateScreenOptions,
 } from '../screens/TaskTemplateScreen';
+import { MyButton } from '../components/MyButton';
 
 const defaultNavOptions = {
      headerStyle: {
@@ -75,11 +76,7 @@ export const MainNavigator = () => {
                                    }}
                               >
                                    <DrawerItemList {...props} />
-                                   <Button
-                                        title='Выход'
-                                        color={Colors.primary}
-                                        onPress={() => {}}
-                                   />
+                                   <MyButton title='Выход' onPress={() => {}} />
                               </SafeAreaView>
                          </View>
                     );

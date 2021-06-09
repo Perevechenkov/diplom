@@ -4,6 +4,8 @@ import { StyleSheet, FlatList, View, Text, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { CONTENT } from '../../data/dummy-data';
 import { CheckListItem } from '../../components/CheckListItem';
+import { Warning } from '../../components/Warning';
+import { Advice } from '../../components/Advice';
 
 export const CheckListTask = props => {
      const [checksCount, setChecksCount] = useState(0);
@@ -13,8 +15,11 @@ export const CheckListTask = props => {
      );
 
      const checks = content.filter(contentItem => 'check' === contentItem.type);
-     const advice = content.find(
-          contentItem => 'advice' === contentItem.type && checksCount >= 0
+     const warning = content.find(
+          contentItem => 'warning' === contentItem.type && checksCount >= 0
+     );
+     const advices = content.filter(
+          contentItem => 'advice' === contentItem.type
      );
 
      const counterHandler = value => {
@@ -32,11 +37,17 @@ export const CheckListTask = props => {
                               <Text>{item.body}</Text>
                          </CheckListItem>
                     ))}
-                    {advice && (
-                         <View>
-                              <Text>{advice.body}</Text>
-                         </View>
+                    {warning && (
+                         <Warning>
+                              <Text>{warning.body}</Text>
+                         </Warning>
                     )}
+                    {advices &&
+                         advices.map(item => (
+                              <Advice key={item.id}>
+                                   <Text>{item.body}</Text>
+                              </Advice>
+                         ))}
                </ScrollView>
           </View>
      );

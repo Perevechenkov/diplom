@@ -1,4 +1,7 @@
 export default {
-     primary: '#4a148c',
-     accent: '#ff6f00',
-}
+     gray: '#d7cdccff',
+     white: '#ffffffff',
+     darkGray: '#59656fff',
+     purple: '#9c528bff',
+     primary: '#1d1e2cff',
+};

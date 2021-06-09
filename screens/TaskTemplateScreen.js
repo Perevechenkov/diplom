@@ -17,6 +17,7 @@ import { IMAGES, TASKS } from '../data/dummy-data';
 import { DiagnosticTask } from './tasks/DiagnosticTask';
 import { CheckListTask } from './tasks/CheckListTask';
 import { CheckHygieneTask } from './tasks/CheckHygieneTask';
+import { MyButton } from '../components/MyButton';
 
 export const TaskTemplateScreen = props => {
      const { taskObj } = props.route.params;
@@ -66,7 +67,7 @@ export const TaskTemplateScreen = props => {
           <View style={styles.screen}>
                {content(currentTask)}
                <View style={styles.button}>
-                    <Button title='Next' onPress={submitHandler} />
+                    <MyButton title='Применить' onPress={submitHandler} />
                </View>
           </View>
      );

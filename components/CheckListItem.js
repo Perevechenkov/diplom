@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
+import Colors from '../constants/Colors';
 
 export const CheckListItem = props => {
      const [value, setValue] = useState(false);
@@ -14,6 +15,7 @@ export const CheckListItem = props => {
                <TouchableWithoutFeedback onPress={() => setValue(!value)}>
                     <View style={styles.content}>
                          <CheckBox
+                              tintColors={{ true: Colors.purple }}
                               value={value}
                               onValueChange={newValue => setValue(newValue)}
                          />
