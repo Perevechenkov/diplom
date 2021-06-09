@@ -27,7 +27,7 @@ export const TasksScreen = props => {
                               taskTitle={task.title}
                               onSelect={() => {
                                    props.navigation.navigate('CurrentTask', {
-                                        taskId: task.id,
+                                        taskObj: task,
                                    });
                               }}
                          />

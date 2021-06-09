@@ -27,26 +27,24 @@ export const IMAGES = [
 ];
 
 export const TASKS = [
-     new Task('diagnostic', 'Диагностика'),
-     new Task('hygiene', 'Гигиена сна'),
-     new Task('breathing', 'Дыхательные техники'),
-     new Task('relaxing', 'Упражнения релаксации'),
-     new Task('findAround', 'Найдите вокруг себя'),
-];
-
-export const CHECKLISTS = [
-     new CheckList('cl1', 'Плохое самочувствие', [
+     new Task('diagnostic', 'Диагностика', 'task'),
+     new Task('hygiene', 'Гигиена сна', 'task'),
+     new Task('breathing', 'Дыхательные техники', 'task'),
+     new Task('relaxing', 'Упражнения релаксации', 'task'),
+     new Task('findAround', 'Найдите вокруг себя', 'task'),
+     new Task('cl1', 'Плохое самочувствие', 'checkList', [
           'травма произошла менее 3 дней назад',
           'испытываете сильную тревогу (беспокойство, волнение, суетливость, напряженность и головные боли, невозможность расслабиться, потливость, головокружение, сбои дыхания и работы желудочно-кишечного тракта)',
           'не можете контактировать с другими людьми',
           'у Вас сужено внимание',
      ]),
-     new CheckList('cl2', 'Правильный сон', ['сон', 'сон']),
-     new CheckList('cl3', 'Забота о себе', [
+     new Task('cl2', 'Правильный сон', 'checkList', ['сон', 'сон']),
+     new Task('cl3', 'Забота о себе', 'checkList', [
           'Я ел что-то в последние 4-5 часов?',
           'Общался ли я с кем-то последние 2 дня?',
      ]),
 ];
+
 
 export const CONDITIONS = [
      new Condition('con1', ['c1', 'c2'], 'cl1'),

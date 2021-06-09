@@ -7,6 +7,7 @@ import {
      View,
      Text,
      Button,
+     Alert,
 } from 'react-native';
 
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -18,32 +19,46 @@ import { CheckListTask } from './tasks/CheckListTask';
 import { CheckHygieneTask } from './tasks/CheckHygieneTask';
 
 export const TaskTemplateScreen = props => {
-     const id = props.route.params.taskId;
-     const [currentTask, setCurrentTask] = useState(id);
-     const taskObj = TASKS.find(task => currentTask === task.id);
-     
+     const {taskObj} = props.route.params;
+     const [currentTask, setCurrentTask] = useState(taskObj);
+     let currentTaskObj;
+     let nextTaskObj;
 
      useEffect(() => {
           props.navigation.setOptions({
-               headerTitle: taskObj.title,
+               headerTitle: currentTask.title,
           });
      }, [currentTask]);
 
-     const content = id => {
-          switch (id) {
-               case 'diagnostic':
-                    return <DiagnosticTask />;
-               case 'checkList':
-                    return <CheckListTask />;
-               case 'hygiene':
-                    return <CheckHygieneTask />;
-               default:
-                    return;
-          }
+     const selectNextTaskHandler = taskObj => {
+          nextTaskObj = taskObj;
      };
 
      const submitHandler = () => {
-          setCurrentTask('hygiene');
+          if (!nextTaskObj) {
+               Alert.alert('Ошибка', 'Выполните задание', [{ text: 'OK' }]);
+          } else {
+               setCurrentTask(nextTaskObj);
+               currentTaskObj = nextTaskObj;
+          }
+     };
+    
+     const content = task => {
+          switch (task.type) {
+               case 'task':
+                    switch (task.id) {
+                         case 'diagnostic':
+                              return (
+                                   <DiagnosticTask
+                                        onNextTask={selectNextTaskHandler}
+                                   />
+                              );
+                    }
+               case 'checkList':
+                    return <CheckListTask />;
+               default:
+                    return;
+          }
      };
 
      return (

@@ -1,26 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { StyleSheet, FlatList, View, Text, Button } from 'react-native';
+import { cond } from 'react-native-reanimated';
 
 import { ImagesGridTile } from '../../components/ImagesGridTile';
-import { CONDITIONS, IMAGES } from '../../data/dummy-data';
+import { CONDITIONS, IMAGES, TASKS } from '../../data/dummy-data';
+
+const areEqualArrays = (a, b) => {
+     for (const v of new Set([...a, ...b]))
+          if (a.filter(e => e === v).length !== b.filter(e => e === v).length)
+               return false;
+     return true;
+};
 
 export const DiagnosticTask = props => {
      const [selectedPics, setSelectedPics] = useState([]);
-
-     const areEqualArrays = (a, b) => {
-          for (const v of new Set([...a, ...b]))
-               if (
-                    a.filter(e => e === v).length !==
-                    b.filter(e => e === v).length
-               )
-                    return false;
-          return true;
-     };
-
      const condition = CONDITIONS.find(condObj =>
           areEqualArrays(condObj.requirements, selectedPics)
      );
+
+     useEffect(() => {
+          if (condition) {
+               const taskObj = TASKS.find(
+                    task => condition.nextTask === task.id
+               );
+               props.onNextTask(taskObj);
+          } else return;
+     }, [condition]);
 
      const selectPicHandler = picId => {
           const index = selectedPics.indexOf(picId);
@@ -35,8 +41,6 @@ export const DiagnosticTask = props => {
                );
           }
      };
-
-     console.log(selectedPics);
 
      const renderGridItem = itemData => {
           return (
