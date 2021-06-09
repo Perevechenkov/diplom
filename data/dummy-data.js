@@ -2,6 +2,7 @@ import CheckList from '../models/checkList';
 import Image from '../models/image';
 import Task from '../models/task';
 import Condition from '../models/condition';
+import Content from '../models/content';
 
 export const IMAGES = [
      new Image(
@@ -32,19 +33,28 @@ export const TASKS = [
      new Task('breathing', 'Дыхательные техники', 'task'),
      new Task('relaxing', 'Упражнения релаксации', 'task'),
      new Task('findAround', 'Найдите вокруг себя', 'task'),
-     new Task('cl1', 'Плохое самочувствие', 'checkList', [
-          'травма произошла менее 3 дней назад',
-          'испытываете сильную тревогу (беспокойство, волнение, суетливость, напряженность и головные боли, невозможность расслабиться, потливость, головокружение, сбои дыхания и работы желудочно-кишечного тракта)',
-          'не можете контактировать с другими людьми',
-          'у Вас сужено внимание',
-     ]),
-     new Task('cl2', 'Правильный сон', 'checkList', ['сон', 'сон']),
-     new Task('cl3', 'Забота о себе', 'checkList', [
-          'Я ел что-то в последние 4-5 часов?',
-          'Общался ли я с кем-то последние 2 дня?',
-     ]),
+     new Task('cl1', 'Плохое самочувствие', 'checkList'),
+     new Task('cl2', 'Правильный сон', 'checkList'),
+     new Task('cl3', 'Забота о себе', 'checkList'),
 ];
 
+export const CONTENT = [
+     new Content('co1', 'check', 'cl3', 'Я ел что-то в последние 4-5 часов?'),
+     new Content(
+          'co2',
+          'check',
+          'cl3',
+          'Общался ли я с кем-то последние 2 дня?'
+     ),
+     new Content('co3', 'check', 'cl1', 'травма произошла менее 3 дней назад'),
+     new Content(
+          'co4',
+          'check',
+          'cl1',
+          'не можете контактировать с другими людьми'
+     ),
+     new Content('co5', 'check', 'cl2', 'сон'),
+];
 
 export const CONDITIONS = [
      new Condition('con1', ['c1', 'c2'], 'cl1'),

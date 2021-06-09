@@ -15,18 +15,26 @@ const areEqualArrays = (a, b) => {
 
 export const DiagnosticTask = props => {
      const [selectedPics, setSelectedPics] = useState([]);
-     const condition = CONDITIONS.find(condObj =>
-          areEqualArrays(condObj.requirements, selectedPics)
-     );
+     let condition;
+     if (selectedPics.length > 0) {
+          condition = CONDITIONS.find(condObj =>
+               areEqualArrays(condObj.requirements, selectedPics)
+          );
+     }
 
      useEffect(() => {
           if (condition) {
                const taskObj = TASKS.find(
                     task => condition.nextTask === task.id
                );
+
                props.onNextTask(taskObj);
-          } else return;
-     }, [condition]);
+          } else if (selectedPics.length <= 0) {
+               props.onNextTask(null);
+          } else {
+               props.onNextTask(TASKS.find(task => 'cl3' === task.id));
+          }
+     }, [selectedPics]);
 
      const selectPicHandler = picId => {
           const index = selectedPics.indexOf(picId);

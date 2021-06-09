@@ -19,7 +19,7 @@ import { CheckListTask } from './tasks/CheckListTask';
 import { CheckHygieneTask } from './tasks/CheckHygieneTask';
 
 export const TaskTemplateScreen = props => {
-     const {taskObj} = props.route.params;
+     const { taskObj } = props.route.params;
      const [currentTask, setCurrentTask] = useState(taskObj);
      let currentTaskObj;
      let nextTaskObj;
@@ -31,6 +31,7 @@ export const TaskTemplateScreen = props => {
      }, [currentTask]);
 
      const selectNextTaskHandler = taskObj => {
+          console.log(taskObj);
           nextTaskObj = taskObj;
      };
 
@@ -42,7 +43,7 @@ export const TaskTemplateScreen = props => {
                currentTaskObj = nextTaskObj;
           }
      };
-    
+
      const content = task => {
           switch (task.type) {
                case 'task':
@@ -55,7 +56,7 @@ export const TaskTemplateScreen = props => {
                               );
                     }
                case 'checkList':
-                    return <CheckListTask />;
+                    return <CheckListTask task={task} />;
                default:
                     return;
           }
