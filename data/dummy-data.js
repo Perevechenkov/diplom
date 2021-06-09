@@ -1,5 +1,7 @@
+import CheckList from '../models/checkList';
 import Image from '../models/image';
 import Task from '../models/task';
+import Condition from '../models/condition';
 
 export const IMAGES = [
      new Image(
@@ -25,14 +27,28 @@ export const IMAGES = [
 ];
 
 export const TASKS = [
-     new Task(
-          'diagnostic',
-          'Диагностика',
-          ['checkList', 'c1', 'c2'],
-          'checkList'
-     ),
-     new Task('checkList', 'Диагностика', null, 'hygiene'),
-     new Task('hygiene', 'Гигиена сна', null, null),
-     new Task('breathing', 'Дыхательные техники', null, null),
-     new Task('relaxing', 'Упражнения релаксации', null, null),
+     new Task('diagnostic', 'Диагностика'),
+     new Task('hygiene', 'Гигиена сна'),
+     new Task('breathing', 'Дыхательные техники'),
+     new Task('relaxing', 'Упражнения релаксации'),
+     new Task('findAround', 'Найдите вокруг себя'),
+];
+
+export const CHECKLISTS = [
+     new CheckList('cl1', 'Плохое самочувствие', [
+          'травма произошла менее 3 дней назад',
+          'испытываете сильную тревогу (беспокойство, волнение, суетливость, напряженность и головные боли, невозможность расслабиться, потливость, головокружение, сбои дыхания и работы желудочно-кишечного тракта)',
+          'не можете контактировать с другими людьми',
+          'у Вас сужено внимание',
+     ]),
+     new CheckList('cl2', 'Правильный сон', ['сон', 'сон']),
+     new CheckList('cl3', 'Забота о себе', [
+          'Я ел что-то в последние 4-5 часов?',
+          'Общался ли я с кем-то последние 2 дня?',
+     ]),
+];
+
+export const CONDITIONS = [
+     new Condition('con1', ['c1', 'c2'], 'cl1'),
+     new Condition('con2', ['c4'], 'cl2'),
 ];

@@ -21,6 +21,7 @@ export const TaskTemplateScreen = props => {
      const id = props.route.params.taskId;
      const [currentTask, setCurrentTask] = useState(id);
      const taskObj = TASKS.find(task => currentTask === task.id);
+     
 
      useEffect(() => {
           props.navigation.setOptions({
@@ -36,18 +37,20 @@ export const TaskTemplateScreen = props => {
                     return <CheckListTask />;
                case 'hygiene':
                     return <CheckHygieneTask />;
+               default:
+                    return;
           }
      };
 
-     const buttonHandler = () => {
-          setCurrentTask(taskObj.nextTask);
+     const submitHandler = () => {
+          setCurrentTask('hygiene');
      };
 
      return (
           <View style={styles.screen}>
                {content(currentTask)}
                <View style={styles.button}>
-                    <Button title='Next' onPress={buttonHandler} />
+                    <Button title='Next' onPress={submitHandler} />
                </View>
           </View>
      );

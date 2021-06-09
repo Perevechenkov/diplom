@@ -1,9 +1,7 @@
 class Task {
-     constructor(id, title, conditions, nextTask) {
+     constructor(id, title) {
           this.id = id;
           this.title = title;
-          this.conditions = conditions;
-          this.nextTask = nextTask;
      }
 }
 
