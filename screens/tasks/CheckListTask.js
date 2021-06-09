@@ -8,22 +8,30 @@ import { Warning } from '../../components/Warning';
 import { Advice } from '../../components/Advice';
 
 export const CheckListTask = props => {
-     const [checksCount, setChecksCount] = useState(0);
+     const [checksArr, setChecksArr] = useState([]);
+
+     let warning;
 
      const content = CONTENT.filter(
           contentItem => props.task.id === contentItem.task
      );
 
      const checks = content.filter(contentItem => 'check' === contentItem.type);
-     const warning = content.find(
-          contentItem => 'warning' === contentItem.type && checksCount >= 0
-     );
+
+     if (checksArr.length >= 2) {
+          warning = content.find(contentItem => 'warning' === contentItem.type);
+     }
+
      const advices = content.filter(
           contentItem => 'advice' === contentItem.type
      );
 
-     const counterHandler = value => {
-          setChecksCount(curValue => (value ? curValue + 1 : curValue - 1));
+     const counterHandler = (value, id) => {
+          if (value) {
+               setChecksArr(curArr => [...curArr, id]);
+          } else {
+               setChecksArr(curArr => curArr.filter(itemId => itemId !== id));
+          }
      };
 
      return (
@@ -32,6 +40,7 @@ export const CheckListTask = props => {
                     {checks.map(item => (
                          <CheckListItem
                               key={item.id}
+                              id={item.id}
                               onCheckHandler={counterHandler}
                          >
                               <Text>{item.body}</Text>

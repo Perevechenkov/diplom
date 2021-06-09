@@ -7,7 +7,7 @@ export const CheckListItem = props => {
      const [value, setValue] = useState(false);
 
      useEffect(() => {
-          props.onCheckHandler(value);
+          props.onCheckHandler(value, props.id);
      }, [value]);
 
      return (

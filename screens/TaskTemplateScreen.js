@@ -32,7 +32,7 @@ export const TaskTemplateScreen = props => {
      }, [currentTask]);
 
      const selectNextTaskHandler = taskObj => {
-          console.log(taskObj);
+          
           nextTaskObj = taskObj;
      };
 
@@ -63,11 +63,14 @@ export const TaskTemplateScreen = props => {
           }
      };
 
+     let btnTitle =
+          currentTask.type === 'checkList' ? 'На главную' : 'Применить';
+
      return (
           <View style={styles.screen}>
                {content(currentTask)}
                <View style={styles.button}>
-                    <MyButton title='Применить' onPress={submitHandler} />
+                    <MyButton title={btnTitle} onPress={submitHandler} />
                </View>
           </View>
      );
