@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
+import {
+     StyleSheet,
+     Text,
+     View,
+     TouchableWithoutFeedback,
+     Platform,
+} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import Colors from '../constants/Colors';
 
@@ -10,15 +16,31 @@ export const CheckListItem = props => {
           props.onCheckHandler(value, props.id);
      }, [value]);
 
+     const renderCheckbox = () => {
+          if (Platform.OS === 'ios') {
+               return (
+                    <CheckBox
+                         onCheckColor={Colors.purple}
+                         value={value}
+                         onValueChange={newValue => setValue(newValue)}
+                    />
+               );
+          } else if (Platform.OS === 'android') {
+               return (
+                    <CheckBox
+                         tintColors={{ true: Colors.purple }}
+                         value={value}
+                         onValueChange={newValue => setValue(newValue)}
+                    />
+               );
+          }
+     };
+
      return (
           <View style={styles.container}>
                <TouchableWithoutFeedback onPress={() => setValue(!value)}>
                     <View style={styles.content}>
-                         <CheckBox
-                              tintColors={{ true: Colors.purple }}
-                              value={value}
-                              onValueChange={newValue => setValue(newValue)}
-                         />
+                         {renderCheckbox()}
                          {props.children}
                     </View>
                </TouchableWithoutFeedback>

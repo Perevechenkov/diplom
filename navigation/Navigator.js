@@ -83,7 +83,7 @@ export const MainNavigator = () => {
                }}
           >
                <MainDrawerNavigator.Screen
-                    name='Tasks'
+                    name='Задания'
                     component={TasksNavigator}
                     options={{
                          drawerIcon: props => (
@@ -96,7 +96,7 @@ export const MainNavigator = () => {
                     }}
                />
                <MainDrawerNavigator.Screen
-                    name='Input'
+                    name='Регистрация'
                     component={InputNavigator}
                     options={{
                          drawerIcon: props => (

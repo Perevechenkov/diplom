@@ -18,7 +18,7 @@ export const CheckListTask = props => {
 
      const checks = content.filter(contentItem => 'check' === contentItem.type);
 
-     if (checksArr.length >= 2) {
+     if (checksArr.length >= 3) {
           warning = content.find(contentItem => 'warning' === contentItem.type);
      }
 
