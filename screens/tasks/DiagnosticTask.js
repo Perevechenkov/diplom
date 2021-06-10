@@ -4,7 +4,7 @@ import { StyleSheet, FlatList, View, Text, Button } from 'react-native';
 import { cond } from 'react-native-reanimated';
 
 import { ImagesGridTile } from '../../components/ImagesGridTile';
-import { CONDITIONS, IMAGES, TASKS } from '../../data/dummy-data';
+import { CONDITIONS, IMAGES, TASKS } from '../../data/data';
 
 const areEqualArrays = (a, b) => {
      for (const v of new Set([...a, ...b]))

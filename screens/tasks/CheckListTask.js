@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, FlatList, View, Text, Button } from 'react-native';
 
 import { ScrollView } from 'react-native-gesture-handler';
-import { CONTENT } from '../../data/dummy-data';
+import { CONTENT } from '../../data/data';
 import { CheckListItem } from '../../components/CheckListItem';
 import { Warning } from '../../components/Warning';
 import { Advice } from '../../components/Advice';

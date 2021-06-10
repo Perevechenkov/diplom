@@ -15,7 +15,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { Card } from '../components/Card';
 import { TaskItem } from '../components/TaskItem';
 import { CustomHeaderButton } from '../components/CustomHeaderButton';
-import { TASKS } from '../data/dummy-data';
+import { TASKS } from '../data/data';
 
 export const TasksScreen = props => {
      return (
