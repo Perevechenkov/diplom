@@ -68,7 +68,7 @@ export const MainNavigator = () => {
                }}
                drawerContent={props => {
                     return (
-                         <View style={{ flex: 1, paddingTop: 20 }}>
+                         <View style={{ flex: 1, paddingTop: 30 }}>
                               <SafeAreaView
                                    forceInset={{
                                         top: 'alvays',

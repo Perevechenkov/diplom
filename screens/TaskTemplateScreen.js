@@ -13,10 +13,8 @@ import {
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import { CustomHeaderButton } from '../components/CustomHeaderButton';
-import { IMAGES, TASKS } from '../data/dummy-data';
 import { DiagnosticTask } from './tasks/DiagnosticTask';
 import { CheckListTask } from './tasks/CheckListTask';
-import { CheckHygieneTask } from './tasks/CheckHygieneTask';
 import { MyButton } from '../components/MyButton';
 
 export const TaskTemplateScreen = props => {
@@ -32,16 +30,21 @@ export const TaskTemplateScreen = props => {
      }, [currentTask]);
 
      const selectNextTaskHandler = taskObj => {
-          
           nextTaskObj = taskObj;
      };
 
      const submitHandler = () => {
-          if (!nextTaskObj) {
-               Alert.alert('Ошибка', 'Выполните задание', [{ text: 'OK' }]);
+          if (currentTask.type === 'checkList') {
+               props.navigation.navigate('Tasks');
           } else {
-               setCurrentTask(nextTaskObj);
-               currentTaskObj = nextTaskObj;
+               if (!nextTaskObj) {
+                    Alert.alert('Ошибка', 'Выполните задание', [
+                         { text: 'OK' },
+                    ]);
+               } else {
+                    setCurrentTask(nextTaskObj);
+                    currentTaskObj = nextTaskObj;
+               }
           }
      };
 
@@ -63,14 +66,18 @@ export const TaskTemplateScreen = props => {
           }
      };
 
-     let btnTitle =
-          currentTask.type === 'checkList' ? 'На главную' : 'Применить';
-
      return (
           <View style={styles.screen}>
                {content(currentTask)}
                <View style={styles.button}>
-                    <MyButton title={btnTitle} onPress={submitHandler} />
+                    <MyButton
+                         title={
+                              currentTask.type === 'checkList'
+                                   ? 'На главную'
+                                   : 'Применить'
+                         }
+                         onPress={submitHandler}
+                    />
                </View>
           </View>
      );
