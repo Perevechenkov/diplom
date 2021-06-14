@@ -16,6 +16,7 @@ import { Card } from '../components/Card';
 import { TaskItem } from '../components/TaskItem';
 import { CustomHeaderButton } from '../components/CustomHeaderButton';
 import { TASKS } from '../data/data';
+import Colors from '../constants/Colors';
 
 export const TasksScreen = props => {
      return (
@@ -24,6 +25,7 @@ export const TasksScreen = props => {
                     {TASKS.map(task => (
                          <TaskItem
                               key={task.id}
+                              taskId={task.id}
                               taskTitle={task.title}
                               onSelect={() => {
                                    props.navigation.navigate('CurrentTask', {

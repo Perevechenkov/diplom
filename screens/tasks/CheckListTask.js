@@ -4,7 +4,6 @@ import { StyleSheet, FlatList, View, Text, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { CONTENT } from '../../data/data';
 import { CheckListItem } from '../../components/CheckListItem';
-import { Warning } from '../../components/Warning';
 import { Advice } from '../../components/Advice';
 
 export const CheckListTask = props => {
@@ -37,20 +36,22 @@ export const CheckListTask = props => {
      return (
           <View style={styles.screen}>
                <ScrollView style={styles.scrollView}>
+                    <Text style={styles.bodyText}>{props.task.body}</Text>
                     {checks.map(item => (
                          <CheckListItem
                               key={item.id}
                               id={item.id}
                               onCheckHandler={counterHandler}
                          >
-                              <Text>{item.body}</Text>
+                              {item.body}
                          </CheckListItem>
                     ))}
                     {warning && (
-                         <Warning>
+                         <Advice isWarning={true}>
                               <Text>{warning.body}</Text>
-                         </Warning>
+                         </Advice>
                     )}
+                    <Text style={styles.bodyText}>Рекомендации:</Text>
                     {advices &&
                          advices.map(item => (
                               <Advice key={item.id}>
@@ -66,7 +67,10 @@ const styles = StyleSheet.create({
      screen: {
           flex: 1,
      },
-     scrollView: {
+     scrollView: {},
+     bodyText: {
+          fontSize: 18,
+          paddingVertical: 5,
           paddingHorizontal: 10,
      },
 });

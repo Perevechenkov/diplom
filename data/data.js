@@ -27,14 +27,24 @@ export const IMAGES = [
 ];
 
 export const TASKS = [
-     new Task('diagnostic', 'Диагностика', 'task'),
-     new Task('hygiene', 'Гигиена сна', 'task'),
-     new Task('breathing', 'Дыхательные техники', 'task'),
-     new Task('relaxing', 'Упражнения релаксации', 'task'),
-     new Task('findAround', 'Найдите вокруг себя', 'task'),
-     new Task('cl1', 'Плохое самочувствие', 'checkList'),
-     new Task('cl2', 'Правильный сон', 'checkList'),
-     new Task('cl3', 'Забота о себе', 'checkList'),
+     new Task(
+          'diagnostic',
+          'Диагностика',
+          'Выберите рисунок, который наиболее соответствует Вашему настроению здесь-и-сейчас:',
+          'task'
+     ),
+     new Task('hygiene', 'Гигиена сна', '', 'task'),
+     new Task('breathing', 'Дыхательные техники', '', 'task'),
+     new Task('relaxing', 'Упражнения релаксации', '', 'task'),
+     new Task('findAround', 'Найдите вокруг себя', '', 'task'),
+     new Task(
+          'cl1',
+          'Плохое самочувствие',
+          'Отметьте, есть ли у Вас следующие признаки:',
+          'checkList'
+     ),
+     new Task('cl2', 'Правильный сон', '', 'checkList'),
+     new Task('cl3', 'Забота о себе', 'Отметьте, есть ли у Вас следующие признаки:', 'checkList'),
 ];
 
 export const CONTENT = [
@@ -51,12 +61,7 @@ export const CONTENT = [
           'cl3',
           'не можете контактировать с другими людьми'
      ),
-     new Content(
-          'co4',
-          'check',
-          'cl3',
-          'испытываете гнев, агрессивны'
-     ),
+     new Content('co4', 'check', 'cl3', 'испытываете гнев, агрессивны'),
      new Content(
           'co5',
           'check',

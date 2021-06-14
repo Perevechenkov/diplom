@@ -1,8 +1,8 @@
 class Condition {
-     constructor(id, requirements, nextTask) {
+     constructor(id, requirements, nextTasks) {
           this.id = id;
           this.requirements = requirements;
-          this.nextTask = nextTask;
+          this.nextTasks = nextTasks;
      }
 }
 

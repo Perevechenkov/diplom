@@ -28,7 +28,7 @@ export const CheckListItem = props => {
           } else if (Platform.OS === 'android') {
                return (
                     <CheckBox
-                         tintColors={{ true: Colors.purple }}
+                         tintColors={{ true: Colors.active }}
                          value={value}
                          onValueChange={newValue => setValue(newValue)}
                     />
@@ -40,8 +40,10 @@ export const CheckListItem = props => {
           <View style={styles.container}>
                <TouchableWithoutFeedback onPress={() => setValue(!value)}>
                     <View style={styles.content}>
-                         {renderCheckbox()}
-                         {props.children}
+                         <View style={styles.checkboxContainer}>
+                              {renderCheckbox()}
+                         </View>
+                         <Text style={styles.text}>{props.children}</Text>
                     </View>
                </TouchableWithoutFeedback>
           </View>
@@ -51,13 +53,18 @@ export const CheckListItem = props => {
 const styles = StyleSheet.create({
      container: {
           padding: 5,
-          marginVertical: 5,
-          borderColor: '#ccc',
-          borderRadius: 5,
-          borderWidth: 1,
+          borderBottomColor: Colors.lightGray,
+
+          borderBottomWidth: 1,
      },
      content: {
           flexDirection: 'row',
           alignItems: 'center',
+     },
+     checkboxContainer: {
+          width: '10%',
+     },
+     text: {
+          width: '90%',
      },
 });

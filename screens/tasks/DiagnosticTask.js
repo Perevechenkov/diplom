@@ -16,6 +16,9 @@ const areEqualArrays = (a, b) => {
 export const DiagnosticTask = props => {
      const [selectedPics, setSelectedPics] = useState([]);
      let condition;
+
+     const task = TASKS.find(task => task.id === 'diagnostic');
+
      if (selectedPics.length > 0) {
           condition = CONDITIONS.find(condObj =>
                areEqualArrays(condObj.requirements, selectedPics)
@@ -62,10 +65,7 @@ export const DiagnosticTask = props => {
 
      return (
           <View style={styles.screen}>
-               <Text>
-                    Выберите рисунок, который наиболее соответствует Вашему
-                    настроения здесь-и-сейчас:
-               </Text>
+               <Text>{task.body}</Text>
                <FlatList data={IMAGES} renderItem={renderGridItem} />
           </View>
      );

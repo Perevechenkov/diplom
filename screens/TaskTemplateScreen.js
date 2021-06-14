@@ -20,7 +20,6 @@ import { MyButton } from '../components/MyButton';
 export const TaskTemplateScreen = props => {
      const { taskObj } = props.route.params;
      const [currentTask, setCurrentTask] = useState(taskObj);
-     let currentTaskObj;
      let nextTaskObj;
 
      useEffect(() => {
@@ -43,7 +42,6 @@ export const TaskTemplateScreen = props => {
                     ]);
                } else {
                     setCurrentTask(nextTaskObj);
-                    currentTaskObj = nextTaskObj;
                }
           }
      };
