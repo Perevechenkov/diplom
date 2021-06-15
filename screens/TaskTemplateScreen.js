@@ -28,7 +28,7 @@ export const TaskTemplateScreen = props => {
      const upcomingTasks = allUpcomingTasks.filter(
           taskId => taskId !== currentTask.id
      );
-
+     //console.log(allUpcomingTasks);
      const dispatch = useDispatch();
 
      let nextTaskObj;

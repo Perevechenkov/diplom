@@ -64,7 +64,9 @@ export const DiagnosticTask = props => {
 
      return (
           <View style={styles.screen}>
-               <Text>{task.body}</Text>
+               <Text style={{ paddingHorizontal: 10, fontSize: 16 }}>
+                    {task.body}
+               </Text>
                <FlatList data={IMAGES} renderItem={renderGridItem} />
           </View>
      );

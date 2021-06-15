@@ -26,14 +26,13 @@ export const tasksReducer = (state = initalState, action) => {
                     const upcomingTaskIndex = state.upcomingTasks.findIndex(
                          taskId => taskId === action.taskId
                     );
+
                     if (upcomingTaskIndex >= 0) {
-                         
+                         const updatedArr = [...state.upcomingTasks];
+                         updatedArr.splice(upcomingTaskIndex, 1);
                          return {
                               ...state,
-                              upcomingTasks: state.upcomingTasks.splice(
-                                   upcomingTaskIndex,
-                                   0
-                              ),
+                              upcomingTasks: updatedArr,
                               completedTasks: state.completedTasks.concat(
                                    state.upcomingTasks[upcomingTaskIndex]
                               ),

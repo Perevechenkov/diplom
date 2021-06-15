@@ -13,17 +13,8 @@ export const CheckListTask = props => {
 
      let warning;
      if (checksArr.length >= 3) {
-          warning = content.find(contentItem => 'warning' === contentItem.type);
+          warning = CONTENT.find(contentItem => 'warning' === contentItem.type);
      }
-
-     //const taskObj = useSelector(state=>state.tasks.tasks) 
-     // const taskObj =TASKS.find(
-     //      task => props.task.id === task.id
-     // );
-
-     // const assignedTasks = taskObj.links
-
-
 
      const content = CONTENT.filter(
           contentItem => props.task.id === contentItem.task
