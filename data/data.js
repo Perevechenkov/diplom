@@ -102,6 +102,10 @@ export const CONTENT = [
 ];
 
 export const CONDITIONS = [
-     new Condition('con1', ['c1', 'c2'], 'cl1', ['breathing']),
-     new Condition('con2', ['c4'], 'cl2', ['findAround']),
+     new Condition('con1', ['c1', 'c2'], 'cl1', [
+          'breathing',
+          'relaxing',
+          'findAround',
+     ]),
+     new Condition('con2', ['c4'], 'cl2', ['findAround', 'hygiene']),
 ];
