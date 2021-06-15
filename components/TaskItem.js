@@ -10,6 +10,8 @@ import {
      Button,
      TouchableNativeFeedback,
 } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { TASKS } from '../data/data';
 import { Card } from '../components/Card';
 import Colors from '../constants/Colors';
@@ -19,16 +21,10 @@ export const TaskItem = props => {
           task => task.id === props.taskId && task.id === 'diagnostic'
      );
 
+     const assignedTasks = useSelector(state => state.tasks.assignedTasks);
+
      const renderTask = isDiagnostic => {
-          if (!isDiagnostic) {
-               return (
-                    <TouchableNativeFeedback onPress={props.onSelect}>
-                         <View style={styles.touchableContainer}>
-                              <Text style={styles.text}>{props.taskTitle}</Text>
-                         </View>
-                    </TouchableNativeFeedback>
-               );
-          } else {
+          if (isDiagnostic && assignedTasks.length === 0) {
                return (
                     <TouchableNativeFeedback onPress={props.onSelect}>
                          <View style={styles.diagnosticContainer}>
@@ -42,12 +38,25 @@ export const TaskItem = props => {
                          </View>
                     </TouchableNativeFeedback>
                );
+          } else {
+               return (
+                    <TouchableNativeFeedback onPress={props.onSelect}>
+                         <View style={styles.touchableContainer}>
+                              <Text style={styles.text}>{props.taskTitle}</Text>
+                         </View>
+                    </TouchableNativeFeedback>
+               );
           }
      };
 
      return (
           <View
-               style={[styles.task, isDiagnostic ? styles.diagnosticTask : []]}
+               style={[
+                    styles.task,
+                    isDiagnostic && assignedTasks.length === 0
+                         ? styles.diagnosticTask
+                         : [],
+               ]}
           >
                {renderTask(isDiagnostic)}
           </View>

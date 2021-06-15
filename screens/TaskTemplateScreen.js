@@ -17,10 +17,17 @@ import { DiagnosticTask } from './tasks/DiagnosticTask';
 import { CheckListTask } from './tasks/CheckListTask';
 import { MyButton } from '../components/MyButton';
 import { completeTask, setTasks } from '../store/tasks-actions';
+import { GenericTask } from './tasks/GenericTask';
 
 export const TaskTemplateScreen = props => {
      const { taskObj } = props.route.params;
      const [currentTask, setCurrentTask] = useState(taskObj);
+
+     const tasks = useSelector(state => state.tasks.tasks);
+     const allUpcomingTasks = useSelector(state => state.tasks.upcomingTasks);
+     const upcomingTasks = allUpcomingTasks.filter(
+          taskId => taskId !== currentTask.id
+     );
 
      const dispatch = useDispatch();
 
@@ -33,6 +40,15 @@ export const TaskTemplateScreen = props => {
           });
      }, [currentTask]);
 
+     const isLastAssignedTask = () => {
+          if (
+               allUpcomingTasks.length === 1 &&
+               currentTask.id === allUpcomingTasks[0]
+          ) {
+               return true;
+          } else return false;
+     };
+
      const selectNextTaskHandler = (taskObj, assignedTasks) => {
           nextTaskObj = taskObj;
           nextAssignedTasks = assignedTasks;
@@ -42,15 +58,19 @@ export const TaskTemplateScreen = props => {
           if (!nextTaskObj && currentTask.id === 'diagnostic') {
                Alert.alert('Ошибка', 'Выполните задание', [{ text: 'OK' }]);
           } else {
-               if (nextAssignedTasks && nextTaskObj) {
-                    //console.log(nextAssignedTasks);
+               if (currentTask.id === 'diagnostic') {
                     dispatch(setTasks(nextAssignedTasks));
                     setCurrentTask(nextTaskObj);
+               } else if (isLastAssignedTask()) {
+                    dispatch(completeTask(currentTask.id));
+                    props.navigation.navigate('Tasks');
                } else {
                     dispatch(completeTask(currentTask.id));
+                    const upcomingTasksObjects = tasks.filter(
+                         task => upcomingTasks.indexOf(task.id) >= 0
+                    );
+                    setCurrentTask(upcomingTasksObjects[0]);
                }
-               
-               props.navigation.navigate('Tasks');
           }
      };
 
@@ -64,6 +84,8 @@ export const TaskTemplateScreen = props => {
                                         onNextTask={selectNextTaskHandler}
                                    />
                               );
+                         default:
+                              return <GenericTask task={task} />;
                     }
                case 'checkList':
                     return <CheckListTask task={task} />;
