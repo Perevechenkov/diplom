@@ -14,7 +14,7 @@ export const TasksScreen = props => {
      const assignedTasks = useSelector(state => state.tasks.assignedTasks);
      const upcomingTasks = useSelector(state => state.tasks.upcomingTasks);
      const completedTasks = useSelector(state => state.tasks.completedTasks);
-     
+
      const renderTaskList = dataArr => {
           return dataArr.map(task => (
                <TaskItem
@@ -41,9 +41,9 @@ export const TasksScreen = props => {
 
                return (
                     <View>
-                         <Text>Рекомендуемые задания</Text>
+                         <Text style={styles.text}>Рекомендуемые задания</Text>
                          {renderTaskList(assignedTasksObjects)}
-                         <Text>Необязательные задания</Text>
+                         <Text style={styles.text}>Необязательные задания</Text>
                          {renderTaskList(otherTasksObjects)}
                     </View>
                );
@@ -79,5 +79,10 @@ export const TasksScreenOptions = navData => {
 const styles = StyleSheet.create({
      screen: {
           flex: 1,
+     },
+
+     text: {
+          fontSize: 18,
+          padding: 10,
      },
 });

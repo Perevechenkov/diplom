@@ -5,6 +5,7 @@ export default {
      purple: '#9c528bff',
      primary: '#1DA1F3',
      lightGray: '#E3E3E3',
+     green: '#4BD55C',
      button: '#355785',
      active: '#46C9FF',
      activeText: 'rgba(70, 201, 255, 0.8)',

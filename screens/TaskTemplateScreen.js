@@ -40,6 +40,14 @@ export const TaskTemplateScreen = props => {
           });
      }, [currentTask]);
 
+     const isUpcomingTask = () => {
+          const upcomingTaskIndex = allUpcomingTasks.findIndex(
+               taskId => taskId === currentTask.id
+          );
+
+          return upcomingTaskIndex >= 0 ? true : false;
+     };
+
      const isLastAssignedTask = () => {
           if (
                allUpcomingTasks.length === 1 &&
@@ -64,12 +72,14 @@ export const TaskTemplateScreen = props => {
                } else if (isLastAssignedTask()) {
                     dispatch(completeTask(currentTask.id));
                     props.navigation.navigate('Tasks');
-               } else {
+               } else if (isUpcomingTask()) {
                     dispatch(completeTask(currentTask.id));
                     const upcomingTasksObjects = tasks.filter(
                          task => upcomingTasks.indexOf(task.id) >= 0
                     );
                     setCurrentTask(upcomingTasksObjects[0]);
+               } else {
+                    props.navigation.navigate('Tasks');
                }
           }
      };
