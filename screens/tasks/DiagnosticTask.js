@@ -30,10 +30,9 @@ export const DiagnosticTask = props => {
                const taskObj = TASKS.find(
                     task => condition.nextTask === task.id
                );
-
-               props.onNextTask(taskObj);
+               props.onNextTask(taskObj, condition.assignedTasks);
           } else if (selectedPics.length <= 0) {
-               props.onNextTask(null);
+               props.onNextTask(null, null);
           } else {
                props.onNextTask(TASKS.find(task => 'cl3' === task.id));
           }

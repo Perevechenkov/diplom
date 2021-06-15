@@ -16,32 +16,18 @@ export const CheckListItem = props => {
           props.onCheckHandler(value, props.id);
      }, [value]);
 
-     const renderCheckbox = () => {
-          if (Platform.OS === 'ios') {
-               return (
-                    <CheckBox
-                         onCheckColor={Colors.purple}
-                         value={value}
-                         onValueChange={newValue => setValue(newValue)}
-                    />
-               );
-          } else if (Platform.OS === 'android') {
-               return (
-                    <CheckBox
-                         tintColors={{ true: Colors.active }}
-                         value={value}
-                         onValueChange={newValue => setValue(newValue)}
-                    />
-               );
-          }
-     };
-
      return (
           <View style={styles.container}>
                <TouchableWithoutFeedback onPress={() => setValue(!value)}>
                     <View style={styles.content}>
                          <View style={styles.checkboxContainer}>
-                              {renderCheckbox()}
+                              <CheckBox
+                                   tintColors={{ true: Colors.primary }}
+                                   value={value}
+                                   onValueChange={newValue =>
+                                        setValue(newValue)
+                                   }
+                              />
                          </View>
                          <Text style={styles.text}>{props.children}</Text>
                     </View>

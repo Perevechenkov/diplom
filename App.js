@@ -9,6 +9,7 @@ import ReduxThunk from 'redux-thunk';
 
 import { userReducer } from './store/user-reducer';
 import { AppNavigator } from './navigation/AppNavigator';
+import { tasksReducer } from './store/tasks-reducer';
 
 enableScreens();
 
@@ -17,6 +18,7 @@ enableScreens();
 
 const rootReducer = combineReducers({
      user: userReducer,
+     tasks: tasksReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

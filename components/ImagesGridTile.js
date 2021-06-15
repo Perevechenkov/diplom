@@ -15,12 +15,7 @@ export const ImagesGridTile = props => {
 
      const selectCurrentPicHandler = id => {
           props.onSelect(id);
-
-          if (props.selectedPics.indexOf(props.item.id)) {
-               setIsSelected(true);
-          } else {
-               setIsSelected(false);
-          }
+          setIsSelected(!isSelected);
      };
 
      const flattenStyle = () => {

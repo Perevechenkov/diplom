@@ -1,25 +1,35 @@
 import React, { useState } from 'react';
 import { StyleSheet, FlatList, View, Text, Button } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import { ScrollView } from 'react-native-gesture-handler';
-import { CONTENT } from '../../data/data';
+import { CONTENT, TASKS } from '../../data/data';
 import { CheckListItem } from '../../components/CheckListItem';
 import { Advice } from '../../components/Advice';
+
 
 export const CheckListTask = props => {
      const [checksArr, setChecksArr] = useState([]);
 
      let warning;
+     if (checksArr.length >= 3) {
+          warning = content.find(contentItem => 'warning' === contentItem.type);
+     }
+
+     //const taskObj = useSelector(state=>state.tasks.tasks) 
+     // const taskObj =TASKS.find(
+     //      task => props.task.id === task.id
+     // );
+
+     // const assignedTasks = taskObj.links
+
+
 
      const content = CONTENT.filter(
           contentItem => props.task.id === contentItem.task
      );
 
      const checks = content.filter(contentItem => 'check' === contentItem.type);
-
-     if (checksArr.length >= 3) {
-          warning = content.find(contentItem => 'warning' === contentItem.type);
-     }
 
      const advices = content.filter(
           contentItem => 'advice' === contentItem.type

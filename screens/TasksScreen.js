@@ -1,17 +1,9 @@
-import React, { useState, useEffect, useCallback, useReducer } from 'react';
-import {
-     StyleSheet,
-     ScrollView,
-     View,
-     Alert,
-     KeyboardAvoidingView,
-     ActivityIndicator,
-     Text,
-     Button,
-     TouchableNativeFeedback,
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, ScrollView, View, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
 import { Card } from '../components/Card';
 import { TaskItem } from '../components/TaskItem';
 import { CustomHeaderButton } from '../components/CustomHeaderButton';
@@ -19,6 +11,10 @@ import { TASKS } from '../data/data';
 import Colors from '../constants/Colors';
 
 export const TasksScreen = props => {
+     const assignedTasks = useSelector(state => state.tasks.assignedTasks);
+     const upcomingTasks = useSelector(state => state.tasks.upcomingTasks);
+     const completedTasks = useSelector(state => state.tasks.completedTasks);
+     
      return (
           <View style={styles.screen}>
                <ScrollView>
